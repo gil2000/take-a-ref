@@ -11,6 +11,9 @@ class CreateFaturasTable extends Migration
     {
         Schema::create('faturas', function (Blueprint $table) {
             $table->id();
+            $table->foreign('carrinho_id')->references('id')->on('carrinho');
+            $table->foreign('nif_user')->references('nif')->on('users');
+            $table->foreign('total_carrinho')->references('total')->on('carrinho');
             $table->timestamps();
         });
     }

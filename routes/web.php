@@ -17,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/zasdadsa', 'CondutosController@index')->name('login');
+Route::get('/adsa', 'CondutosController@index')->name('register');
+
 

@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBebidaCarrinhosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
+
     public function up()
     {
         Schema::create('bebida_carrinhos', function (Blueprint $table) {
             $table->id();
+            $table->foreign('bebida_ementa')->references('bebidas_ementa')->on('ementa');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
+
     public function down()
     {
         Schema::dropIfExists('bebida_carrinhos');

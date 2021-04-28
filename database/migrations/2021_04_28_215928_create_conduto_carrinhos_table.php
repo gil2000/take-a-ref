@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCondutoCarrinhosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
+
     public function up()
     {
         Schema::create('conduto_carrinhos', function (Blueprint $table) {
             $table->id();
+            $table->foreign('conduto_ementa')->references('condutos_ementa')->on('ementa');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
+
     public function down()
     {
         Schema::dropIfExists('conduto_carrinhos');

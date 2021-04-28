@@ -6,24 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSopaCarrinhosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
     public function up()
     {
         Schema::create('sopa_carrinhos', function (Blueprint $table) {
             $table->id();
+            $table->foreign('sopa_ementa')->references('sopas_ementa')->on('ementa');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    //=============================================================================================================
     public function down()
     {
         Schema::dropIfExists('sopa_carrinhos');
