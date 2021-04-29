@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carrinho;
+use App\Produto;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
@@ -22,7 +23,7 @@ class CarrinhoController extends Controller
     //======================================================================================
     public function store(Request $request)
     {
-        //
+
     }
 
     //======================================================================================

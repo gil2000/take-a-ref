@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('teste');
 });
+Route::post('/enviar_feedback', 'FeedbackController@store')->name('enviarfeedback');
 
 Route::get('/zasdadsa', 'CondutosController@index')->name('login');
 Route::get('/adsa', 'CondutosController@index')->name('register');
