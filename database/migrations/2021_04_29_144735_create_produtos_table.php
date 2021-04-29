@@ -4,24 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFailedJobsTable extends Migration
+class CreateProdutosTable extends Migration
 {
     //======================================================================================
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->foreignId('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->string('nome');
+            $table->string('descricao');
+            $table->float('preco');
+            $table->timestamps();
         });
     }
 
     //======================================================================================
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('produtos');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Condutos;
+use App\CompCarrinho;
 use Illuminate\Http\Request;
 
-class CondutosController extends Controller
+class CompCarrinhoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CondutosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Condutos  $condutos
+     * @param  \App\CompCarrinho  $compCarrinho
      * @return \Illuminate\Http\Response
      */
-    public function show(Condutos $condutos)
+    public function show(CompCarrinho $compCarrinho)
     {
         //
     }
@@ -52,10 +52,10 @@ class CondutosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Condutos  $condutos
+     * @param  \App\CompCarrinho  $compCarrinho
      * @return \Illuminate\Http\Response
      */
-    public function edit(Condutos $condutos)
+    public function edit(CompCarrinho $compCarrinho)
     {
         //
     }
@@ -64,10 +64,10 @@ class CondutosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Condutos  $condutos
+     * @param  \App\CompCarrinho  $compCarrinho
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Condutos $condutos)
+    public function update(Request $request, CompCarrinho $compCarrinho)
     {
         //
     }
@@ -75,10 +75,10 @@ class CondutosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Condutos  $condutos
+     * @param  \App\CompCarrinho  $compCarrinho
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Condutos $condutos)
+    public function destroy(CompCarrinho $compCarrinho)
     {
         //
     }

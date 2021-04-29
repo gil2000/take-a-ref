@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFeedbackTable extends Migration
 {
-    //=============================================================================================================
-
+    //======================================================================================
     public function up()
     {
         Schema::create('feedback', function (Blueprint $table) {
@@ -19,8 +18,7 @@ class CreateFeedbackTable extends Migration
         });
     }
 
-    //=============================================================================================================
-
+    //======================================================================================
     public function down()
     {
         Schema::dropIfExists('feedback');

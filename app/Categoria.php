@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Conduto_carrinho extends Model
+class Categoria extends Model
 {
     //
 }

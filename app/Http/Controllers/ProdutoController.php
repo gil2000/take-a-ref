@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Sobremesa_carrinho;
+use App\Produto;
 use Illuminate\Http\Request;
 
-class SobremesaCarrinhoController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SobremesaCarrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sobremesa_carrinho  $sobremesa_carrinho
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(Sobremesa_carrinho $sobremesa_carrinho)
+    public function show(Produto $produto)
     {
         //
     }
@@ -52,10 +52,10 @@ class SobremesaCarrinhoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sobremesa_carrinho  $sobremesa_carrinho
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sobremesa_carrinho $sobremesa_carrinho)
+    public function edit(Produto $produto)
     {
         //
     }
@@ -64,10 +64,10 @@ class SobremesaCarrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sobremesa_carrinho  $sobremesa_carrinho
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sobremesa_carrinho $sobremesa_carrinho)
+    public function update(Request $request, Produto $produto)
     {
         //
     }
@@ -75,10 +75,10 @@ class SobremesaCarrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sobremesa_carrinho  $sobremesa_carrinho
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sobremesa_carrinho $sobremesa_carrinho)
+    public function destroy(Produto $produto)
     {
         //
     }

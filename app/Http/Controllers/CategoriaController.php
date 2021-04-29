@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Sopa_carrinho;
+use App\Categoria;
 use Illuminate\Http\Request;
 
-class SopaCarrinhoController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SopaCarrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sopa_carrinho  $sopa_carrinho
+     * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Sopa_carrinho $sopa_carrinho)
+    public function show(Categoria $categoria)
     {
         //
     }
@@ -52,10 +52,10 @@ class SopaCarrinhoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sopa_carrinho  $sopa_carrinho
+     * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sopa_carrinho $sopa_carrinho)
+    public function edit(Categoria $categoria)
     {
         //
     }
@@ -64,10 +64,10 @@ class SopaCarrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sopa_carrinho  $sopa_carrinho
+     * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sopa_carrinho $sopa_carrinho)
+    public function update(Request $request, Categoria $categoria)
     {
         //
     }
@@ -75,10 +75,10 @@ class SopaCarrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sopa_carrinho  $sopa_carrinho
+     * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sopa_carrinho $sopa_carrinho)
+    public function destroy(Categoria $categoria)
     {
         //
     }
