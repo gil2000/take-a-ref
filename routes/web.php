@@ -13,12 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('teste');
-});
-Route::post('/enviar_feedback', 'FeedbackController@store')->name('enviarfeedback');
 
-Route::get('/zasdadsa', 'CondutosController@index')->name('login');
-Route::get('/adsa', 'CondutosController@index')->name('register');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::post('/enviar_feedback', 'FeedbackController@store')->name('enviarfeedback');
+Route::get('/feedback', 'FeedbackController@index')->name('feedbacks');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user', 'UserController@index')->name('user.index');
+
+
+//Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:gerir-users')->group(function (){
+    Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+    Route::resource('/cantina', 'CantinaController');
+});
+
+
+
+
+
 
 

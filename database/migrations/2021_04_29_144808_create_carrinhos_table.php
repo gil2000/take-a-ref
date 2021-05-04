@@ -13,8 +13,8 @@ class CreateCarrinhosTable extends Migration
             $table->id();
             $table->foreignId('ementa_dia');
             $table->foreign('ementa_dia')->references('id')->on('ementas');
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -10,7 +10,9 @@ class FeedbackController extends Controller
 
     public function index()
     {
-        //
+        $feedbacks = Feedback::all();
+
+        return view('admin.feedbacks.index')->with('feedbacks', $feedbacks);
     }
 
 
