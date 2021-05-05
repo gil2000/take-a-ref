@@ -17,10 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::post('/enviar_feedback', 'FeedbackController@store')->name('enviarfeedback');
-Route::get('/feedback', 'FeedbackController@index')->name('feedbacks');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -30,8 +29,12 @@ Route::get('/user', 'UserController@index')->name('user.index');
 //Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:gerir-users')->group(function (){
+    Route::post('/search', 'UsersController@search')->name('users.search');
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
     Route::resource('/cantina', 'CantinaController');
+    Route::resource('/produtos', 'ProdutoController');
+    Route::resource('/feedback', 'FeedbackController');
+    Route::resource('/categorias', 'CategoriaController');
 });
 
 

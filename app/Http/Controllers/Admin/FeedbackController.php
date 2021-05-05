@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Feedback;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -32,7 +37,7 @@ class FeedbackController extends Controller
 
         $feedback->save();
 
-        return redirect('/');
+        return redirect()->route('welcome');
     }
 
 
@@ -56,6 +61,7 @@ class FeedbackController extends Controller
 
     public function destroy(Feedback $feedback)
     {
-        //
+        $feedback->delete();
+        return redirect()->route('admin.feedback.index');
     }
 }

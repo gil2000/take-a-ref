@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Cantina;
+use App\Http\Controllers\Controller;
+use App\Produto;
+use App\Categoria;
+use Gate;
+use Illuminate\Http\Request;
+
+class ProdutoController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    //=============================================================================================
+    public function index()
+    {
+        $produtos = Produto::all();
+        $categorias = Cantina::all();
+        return view('admin.produtos.index')->with('produtos', $produtos, 'categorias', $categorias);
+    }
+
+    //=============================================================================================
+    public function create()
+    {
+        $categorias = Categoria::all();
+        return view('admin.produtos.create')->with('categorias', $categorias);
+    }
+
+    //=============================================================================================
+    public function store(Request $request)
+    {
+        $produto = new produto;
+
+        $produto ->categoria_id = $request->text_categoria;
+        $produto ->nome = $request->text_nome;
+        $produto ->descricao = $request->text_descricao;
+
+        $produto->save();
+
+        return redirect()->route('admin.produtos.index');
+    }
+
+    //=============================================================================================
+    public function show(Produto $produto)
+    {
+        //
+    }
+
+    //=============================================================================================
+    public function edit(Produto $produto)
+    {
+        $categorias = Categoria::all();
+        $produto::find($produto);
+        return view('admin.produtos.edit', compact('categorias'))->with([
+            'produto' => $produto,
+        ]);
+    }
+
+    //=============================================================================================
+    public function update(Request $request, Produto $produto)
+    {
+
+        $produto ->categoria_id = $request->text_categoria;
+        $produto ->nome = $request->text_nome;
+        $produto ->descricao = $request->text_descricao;
+
+        $produto->save();
+
+        return redirect()->route('admin.produtos.index');
+    }
+
+    //=============================================================================================
+    public function destroy(Produto $produto)
+    {
+        $produto->delete();
+        return redirect()->route('admin.produtos.index');
+    }
+}

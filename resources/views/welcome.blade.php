@@ -26,9 +26,6 @@
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white h5" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-white h5" aria-current="page" href="#feedback">Feedback</a>
                         </li>
                         <li class="nav-item">
@@ -38,7 +35,7 @@
                             <a class="nav-link text-white h5" aria-current="page" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white h5" aria-current="page" href="{{ route('register') }}">Criar Conta</a>
+                            <a class="nav-link text-white h5" aria-current="page" href="{{ route('register') }}">Registar</a>
                         </li>
                     </ul>
             </div>
@@ -74,7 +71,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-4 text-center">Feedback</h2>
-                <form method="post" action="{{ route('enviarfeedback') }}" >
+                <form method="post" action="{{ route('admin.feedback.store') }}" >
                     @csrf
                     <div class="mb-1">
                         <label for="nome" class="form-label">Nome</label>
@@ -121,7 +118,10 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
     </body>
+    <script src="{{ asset('js/app.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
 </html>
 
