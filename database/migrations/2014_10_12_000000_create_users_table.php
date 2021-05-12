@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('estudante')->default('0');
-            $table->string('instituicao');
+            $table->string('instituicao')->nullable();
             $table->bigInteger('telemovel');
             $table->bigInteger('nif')->default('0');
             $table->rememberToken();

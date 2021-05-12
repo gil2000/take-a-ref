@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-4 text-center">Feedback</h2>
-                <form method="post" action="{{ route('admin.feedback.store') }}" >
+                <form method="post" action="{{ route('feedback.store') }}" >
                     @csrf
                     <div class="mb-1">
                         <label for="nome" class="form-label">Nome</label>

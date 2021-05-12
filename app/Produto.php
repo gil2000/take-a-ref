@@ -8,8 +8,12 @@ class Produto extends Model
 {
     protected $table ='produtos';
 
-    public function categorias(){
-        return $this->belongsTo(Categoria::class, 'categoria_id');
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function ementas(){
+        return $this->hasMany(Ementa::class);
     }
 
 }

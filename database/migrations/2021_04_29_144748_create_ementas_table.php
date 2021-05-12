@@ -13,7 +13,7 @@ class CreateEmentasTable extends Migration
             $table->id();
             $table->date('dia');
             $table->foreignId('produto_id');
-            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cantina;
+use App\Categoria;
 use App\Http\Controllers\Controller;
 use App\Produto;
-use App\Categoria;
-use Gate;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -20,7 +19,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        $categorias = Cantina::all();
+        $categorias = Categoria::all();
         return view('admin.produtos.index')->with('produtos', $produtos, 'categorias', $categorias);
     }
 

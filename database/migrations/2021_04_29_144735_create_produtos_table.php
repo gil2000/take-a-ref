@@ -12,10 +12,10 @@ class CreateProdutosTable extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->string('nome');
             $table->string('descricao');
-            $table->float('preco');
+            $table->float('preco')->nullable();
             $table->timestamps();
         });
     }
