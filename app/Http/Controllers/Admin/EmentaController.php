@@ -28,9 +28,9 @@ class EmentaController extends Controller
     //==========================================================================
     public function create()
     {
-
         $produtos = Produto::all();
-        return view('admin.ementa.create')->with('produtos', $produtos);
+
+        return view('admin.ementa.create', compact('produtos'));
     }
 
     //==========================================================================
@@ -38,8 +38,10 @@ class EmentaController extends Controller
     {
         $ementa = new ementa;
 
-        $ementa -> dia = $request->text_data;
-        $ementa -> produto_id = $request->text_produto;
+        $ementa -> dia = $request-> text_data;
+        $ementa -> produto_id = $request-> text_produto;
+        $ementa -> tipo = $request-> text_horario;
+        $ementa -> diasemana = $request-> text_diasemana;
 
         $ementa->save();
 

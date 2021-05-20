@@ -39,7 +39,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:geri
 
 
 Route::get('/perfil', 'UserController@verPerfil')->name('verperfil');
-
+Route::get('/editarperfil', 'UserController@edit')->name('editperfil');
+Route::post('/gravarperfil', 'UserController@update')->name('gravarperfil');
 
 
 
