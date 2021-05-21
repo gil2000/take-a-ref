@@ -13,9 +13,9 @@ class CreateEmentasTable extends Migration
             $table->id();
             $table->timestamp('dia');
             $table->integer('tipo');
-            $table->integer('diasemana');
             $table->foreignId('produto_id');
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->integer('diasemana');
             $table->timestamps();
         });
     }

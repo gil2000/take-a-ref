@@ -19,10 +19,9 @@ class EmentaController extends Controller
 
     public function index()
     {
-        $ementas = Ementa::orderBy('dia')->paginate(8);
+        $ementas = Ementa::all();
         $produtos = Produto::all();
-        $categorias = Categoria::all();
-        return view('admin.ementa.index')->with('ementas' , $ementas, 'produtos' , $produtos, 'categorias', $categorias);
+        return view('admin.ementa.index')->with('ementas' , $ementas, 'produtos', $produtos);
     }
 
     //==========================================================================

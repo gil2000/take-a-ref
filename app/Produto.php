@@ -13,8 +13,9 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class);
     }
 
-    public function ementas(){
+    public function ementa(){
         return $this->hasMany(Ementa::class);
     }
+
 
 }

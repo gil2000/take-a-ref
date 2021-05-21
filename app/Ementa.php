@@ -12,8 +12,21 @@ class Ementa extends Model
 
     protected $dates = ['dia'];
 
+    private $nomePrato = [
+        1 => 'Prato Carne: ',
+        2 => 'Prato Peixe: ',
+        3 => 'Prato Vegetariano: ',
+        4 => 'Doce: ',
+        5 => 'Fruta: ',
+        6 => 'Sopa: ',
+    ];
+
     public function produto(){
         return $this ->belongsTo(Produto::class);
+    }
+
+    public function nomePrato(){
+        return $this->nomePrato[$this->produto->categoria_id];
     }
 
 }

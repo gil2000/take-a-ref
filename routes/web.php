@@ -42,6 +42,8 @@ Route::get('/perfil', 'UserController@verPerfil')->name('verperfil');
 Route::get('/editarperfil', 'UserController@edit')->name('editperfil');
 Route::post('/gravarperfil', 'UserController@update')->name('gravarperfil');
 
+Route::get('/add-to-cart/{}', 'CartController@add')->name('cart.add');
+
 
 
 
