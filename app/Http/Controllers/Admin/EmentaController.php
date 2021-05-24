@@ -19,7 +19,7 @@ class EmentaController extends Controller
 
     public function index()
     {
-        $ementas = Ementa::all();
+        $ementas = Ementa::paginate(12);
         $produtos = Produto::all();
         return view('admin.ementa.index')->with('ementas' , $ementas, 'produtos', $produtos);
     }
