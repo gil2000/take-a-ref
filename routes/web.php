@@ -42,9 +42,13 @@ Route::get('/perfil', 'UserController@verPerfil')->name('verperfil');
 Route::get('/editarperfil', 'UserController@edit')->name('editperfil');
 Route::post('/gravarperfil', 'UserController@update')->name('gravarperfil');
 
-Route::post('/resumo-carrinho', 'CartController@index')->name('resumo');
+Route::post('/guardar-carrinho', 'CartController@storeCarrinho')->name('storecarrinho');
+Route::get('/carrinho', 'CartController@index')->name('mostracarrinho');
+Route::post('/carrinho/remover-item/{id}', 'CartController@removeItem')->name('removeritem');
+Route::post('/apagar-carrinho', 'CartController@apagarCarrinho')->name('apagarcarrinho');
 Route::get('/ementa/{tipo}/{dia}', 'UserController@show')->name('show');
 
+Route::get('/pagar', 'CartController@pagar')->name('pagar');
 
 
 

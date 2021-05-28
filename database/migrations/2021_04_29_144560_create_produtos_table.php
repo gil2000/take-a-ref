@@ -15,7 +15,7 @@ class CreateProdutosTable extends Migration
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->string('nome');
             $table->string('descricao');
-            $table->float('preco')->nullable();
+            $table->float('preco', 2)->nullable();
             $table->timestamps();
         });
     }

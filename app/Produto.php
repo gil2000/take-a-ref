@@ -9,6 +9,8 @@ class Produto extends Model
 
     protected $table ='produtos';
 
+    protected $fillable = [];
+
     public function categoria(){
         return $this->belongsTo(Categoria::class);
     }
