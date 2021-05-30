@@ -12,13 +12,16 @@
     </div>
     <!-- /Breadcrumb -->
 
+    @if($message = Session::get('success'))
+        {{ $message }}
+    @endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Editar user {{ $user -> name }}</div>
                     <div class="card-body">
-
                         <form action="{{ route('admin.users.update', $user) }}" method="POST">
                             @csrf
                             {{ method_field('PUT') }}

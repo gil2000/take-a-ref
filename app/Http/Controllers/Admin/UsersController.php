@@ -47,7 +47,8 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'Roles atualizadas com sucesso');
     }
 
     //=================================================================================================
@@ -59,6 +60,7 @@ class UsersController extends Controller
         }
         $user->roles()->detach();
         $user->delete();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User eliminado com sucesso');
     }
 }

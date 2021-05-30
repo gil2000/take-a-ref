@@ -5,7 +5,7 @@
     <div class="container mb-5">
         <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb p-1">
-                <li class="breadcrumb-item active" aria-current="page">Produtos</li>
+                <li class="breadcrumb-item active" aria-current="page">Gestão de Utilizadores</li>
             </ol>
         </nav>
     </div>

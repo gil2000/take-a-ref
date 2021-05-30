@@ -36,7 +36,7 @@
                                 <td class="align-middle">{{ $cantina->localizacao }}</td>
                                     <td class="">
                                         <div class="justify-content-center d-flex">
-                                        <a href="{{ route('admin.cantina.edit', $cantina->id) }}"> <button type="button" class="btn btn-sm btn-primary float-left m-1 ju"><i class="fas fa-pen"></i></button> </a>
+                                            <a href="{{ route('admin.cantina.edit', $cantina->id) }}"> <button type="button" class="btn btn-sm btn-primary float-left m-1 ju"><i class="fas fa-pen"></i></button> </a>
                                         </div>
                                     </td>
                             </tr>

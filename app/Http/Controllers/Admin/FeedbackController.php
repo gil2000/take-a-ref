@@ -62,6 +62,7 @@ class FeedbackController extends Controller
     public function destroy(Feedback $feedback)
     {
         $feedback->delete();
-        return redirect()->route('admin.feedback.index');
+        return redirect()->route('admin.feedback.index')
+            ->with('success', 'Feedback eliminado com sucesso');
     }
 }

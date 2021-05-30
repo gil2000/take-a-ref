@@ -110,7 +110,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ request()->routeIs('admin.pedidos.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.pedidos.index') }}">
-                    <i class="fas fa-clipboard-list"></i>
+                    <i class="fas fa-clipboard-list mx-2"></i>
                     <span> Pedidos</span></a>
             </li>
 
@@ -166,6 +166,7 @@
                 </nav>
                 <!-- End of Topbar -->
                 <div class="container-fluid p-5">
+                    @include('flash-message')
                     @yield('content')
                 </div>
             </div>

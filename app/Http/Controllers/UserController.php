@@ -93,9 +93,7 @@ class UserController extends Controller
             \Cart::destroy();
         }
 
-
-
-
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')
+            ->with('success', 'Pedido efetuado com sucesso');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Pedido;
+use App\User;
 use Illuminate\Http\Request;
 
 class PedidosController extends Controller
@@ -14,9 +15,16 @@ class PedidosController extends Controller
     }
 
     //==========================================================================
-    public function index(){
+    public function index(Request $request){
 
-        $pedidos = Pedido::all();
+        if(!is_null($request->search))
+            $pedidos = Pedido::orderBy('updated_at', 'desc')
+                ->where('nome', 'like', '%' . $request->search . '%')
+                ->paginate(5);
+        else
+            $pedidos = Pedido::orderBy('updated_at', 'desc')
+            ->paginate(5);
+
         return view('admin.pedidos.index', compact('pedidos'));
 
     }

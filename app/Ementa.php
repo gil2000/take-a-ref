@@ -25,6 +25,7 @@ class Ementa extends Model
         5 => 'Fruta: ',
         6 => 'Sopa: ',
         7 => 'Pão: ',
+        8 => 'Bebida (+1€): ',
     ];
 
     public function produto(){

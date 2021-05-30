@@ -44,7 +44,8 @@ class EmentaController extends Controller
 
         $ementa->save();
 
-        return redirect()->route('admin.ementa.index');
+        return redirect()->route('admin.ementa.index')
+            ->with('success', 'Ementa guardada com sucesso');
     }
 
     //==========================================================================
@@ -61,25 +62,31 @@ class EmentaController extends Controller
         return view('admin.ementa.edit', compact('produtos'))->with([
             'ementa' => $ementa
         ]);
+
+
     }
 
     //==========================================================================
     public function update(Request $request, Ementa $ementa)
     {
 
-        $ementa -> dia = $request->text_dia;
-        $ementa -> produto_id = $request->text_produto;
+        $ementa -> dia = $request-> text_data;
+        $ementa -> produto_id = $request-> text_produto;
+        $ementa -> tipo = $request-> text_horario;
+        $ementa -> diasemana = $request-> text_diasemana;
 
         $ementa->save();
 
-        return redirect()->route('admin.ementa.index');
+        return redirect()->route('admin.ementa.index')
+            ->with('success', 'Ementa editada com sucesso');
     }
 
     //==========================================================================
     public function destroy(Ementa $ementa)
     {
         $ementa->delete();
-        return redirect()->route('admin.ementa.index');
+        return redirect()->route('admin.ementa.index')
+            ->with('success', 'Ementa eliminada com sucesso');
     }
 
 }

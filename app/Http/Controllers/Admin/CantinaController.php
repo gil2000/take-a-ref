@@ -37,7 +37,8 @@ class CantinaController extends Controller
 
         $cantina->save();
 
-        return redirect('admin\users');
+        return redirect('admin\users')
+            ->with('success', 'Dados guardados com sucesso');
     }
 
     //==========================================================================================
@@ -64,12 +65,13 @@ class CantinaController extends Controller
 
         $cantina->save();
 
-        return redirect()->route('admin.cantina.index');
+        return redirect()->route('admin.cantina.index')
+            ->with('success', 'Dados guardados com sucesso');
     }
 
     //==========================================================================================
     public function destroy(Cantina $cantina)
     {
-        //
+
     }
 }
