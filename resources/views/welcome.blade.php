@@ -17,7 +17,7 @@
     <body>
         <nav class="navbar navbar-expand-lg py-4" style="background: #B5D6D6;">
             <div class="container">
-                <a class="logo"><img class="rounded" src="{{ URL::asset('img/logo.jpg') }}" alt="logo"></a>
+                <a class="logo"><img class="rounded" src="{{ asset('img/logo.jpg') }}" alt="logo"></a>
                 <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon bg-light"></span>
                 </button>
@@ -47,10 +47,7 @@
                     escolas.
                 </div>
             </div>
-
             <hr class="p-1 my-5">
-
-
             <section id="feedback" class=" container mt-5">
                 <div class="row">
                     <div class="col-md-6">
