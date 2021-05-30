@@ -59,26 +59,27 @@
                             @csrf
                             <div class="mb-1">
                                 <label for="nome" class="form-label">Nome</label>
-                                <input type="nome" class="form-control" name="text_nome" id="nome" placeholder="">
+                                <input type="nome" class="form-control" name="text_nome" id="nome"
+                                       placeholder="">
                             </div>
                             <div class="mb-1">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="text_email" id="email" placeholder="">
+                                <input type="email" class="form-control" name="text_email"
+                                       id="email" placeholder="">
                             </div>
                             <div class="mb-2">
                                 <label for="feedback" class="form-label">Feedback</label>
-                                <textarea class="form-control" name="text_feedback" id="feedback" rows="3"></textarea>
+                                <textarea class="form-control" name="text_feedback" id="feedback"
+                                          rows="3"></textarea>
                             </div>
 
                             <button style="background: #6EAFAF" type="submit" class="btn mt-4">Enviar Feedback</button>
                         </form>
                     </div>
                     <div class="col-md-6 text-center">
-                        <h2 class="mb-4 text-center">Localização</h2>
+                        <h2 class="mb-2 text-center">Localização</h2>
                         <p>3045-601 Coimbra</p>
-
-                            <iframe style="height: 300px" class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d931.3213817408447!2d-8.45470737076738!3d40.21175672286475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22f9c821061499%3A0x19d99d9628f77275!2sCantina%20ESAC%2FISCAC!5e1!3m2!1spt-PT!2spt!4v1619733578949!5m2!1spt-PT!2spt" allowfullscreen="true" loading="lazy"></iframe>
-
+                        <iframe style="height: 300px" class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d931.3213817408447!2d-8.45470737076738!3d40.21175672286475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22f9c821061499%3A0x19d99d9628f77275!2sCantina%20ESAC%2FISCAC!5e1!3m2!1spt-PT!2spt!4v1619733578949!5m2!1spt-PT!2spt" allowfullscreen="true" loading="lazy"></iframe>
                     </div>
                 </div>
             </section>

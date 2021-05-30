@@ -15,12 +15,6 @@
                 <a href="{{ route('admin.ementa.create') }}" type="button" class="btn btn-sm btn-outline-dark float-right">Adicionar nova ementa </a>
             </div>
             <div class="card-body">
-                <form class="m-2 border border-dark" action="" method="GET">
-                    <div class="input-group input-group-navbar">
-                        <input type="text" name='search' class="form-control" placeholder="Procurar…" aria-label="Search">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                </form>
                 <table class="table">
                     <thead>
                     <tr>

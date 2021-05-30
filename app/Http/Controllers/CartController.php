@@ -54,13 +54,4 @@ class CartController extends Controller
         return view('users.pagamento');
     }
 
-    //========================================================================================================
-    public function update($rowId){
-
-        \Cart::get($rowId);
-        \Cart::update($rowId, 6);
-
-        return redirect()->route('mostracarrinho');
-
-    }
 }

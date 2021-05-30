@@ -10,11 +10,11 @@
         </nav>
     </div>
     <!-- /Breadcrumb -->
-{{--            @if (session('status'))--}}
-{{--                <div class="alert alert-success" role="alert">--}}
-{{--                    {{ session('status') }}--}}
-{{--                </div>--}}
-{{--            @endif--}}
+
+    @if($message = Session::get('success'))
+        {{ $message }}
+    @endif
+
     <div class="container">
         <h1 class="text-center">Ementas da semana</h1>
 
@@ -36,6 +36,7 @@
                     <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
                         <div class="row">
+
                             @foreach($segundaF as $segunda)
                                     @if($segunda->tipo == 1)
                                         <div class="col-md-4">
@@ -51,7 +52,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="segundaAlmoco" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="staticBackdropLabel">Pratos de Segunda-Feira</h5>
@@ -65,7 +66,6 @@
                                             </div>
                                             @foreach($segundaF as $segunda)
                                                 @if($segunda->tipo == 1)
-
                                                     @if($segunda->nomePrato() == 'Prato Carne: ' || $segunda->nomePrato() == 'Prato Peixe: ' || $segunda->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
@@ -90,6 +90,13 @@
                                                     @elseif($segunda->nomePrato() == 'Sopa: ')
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" name="sopa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($segunda->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" name="bebida" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
                                                             </label>
@@ -129,7 +136,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="segundaJantar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="staticBackdropLabel">Pratos de Segunda-Feira</h5>
@@ -171,6 +178,13 @@
                                                                 <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($segunda->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -179,10 +193,10 @@
                                                 <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                             </div>
                                         </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -217,7 +231,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}" >
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -251,14 +266,21 @@
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($terca->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +316,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}" >
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -328,19 +351,25 @@
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($terca->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -375,7 +404,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}" >
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -383,12 +413,12 @@
                                                 @if($quarta->tipo == 1)
                                                     @if($quarta->nomePrato() == 'Prato Carne: ' || $quarta->nomePrato() == 'Prato Peixe: ' || $quarta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $segunda->nomePrato() == 'Doce: ')
+                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $quarta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="sobremesa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
@@ -409,14 +439,21 @@
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($quarta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -452,7 +489,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -460,12 +498,12 @@
                                                 @if($quarta->tipo == 2)
                                                     @if($quarta->nomePrato() == 'Prato Carne: ' || $quarta->nomePrato() == 'Prato Peixe: ' || $quarta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $segunda->nomePrato() == 'Doce: ')
+                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $quarta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="sobremesa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
@@ -486,14 +524,21 @@
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($quarta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -533,7 +578,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -567,14 +613,21 @@
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($quinta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -609,7 +662,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -643,14 +697,21 @@
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($quinta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -689,7 +750,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -697,7 +759,7 @@
                                                 @if($sexta->tipo == 1)
                                                     @if($sexta->nomePrato() == 'Prato Carne: ' || $sexta->nomePrato() == 'Prato Peixe: ' || $sexta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $sexta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
@@ -723,14 +785,21 @@
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($sexta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -764,7 +833,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('storecarrinho') }}">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -798,24 +868,29 @@
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
+                                                    @elseif($sexta->nomePrato() == 'Bebida (+1€): ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="bebida" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
+                                                            </label>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection

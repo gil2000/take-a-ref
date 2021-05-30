@@ -29,18 +29,14 @@ Route::get('/user', 'UserController@index')
 Route::post('/feedback','UserFeedbackController@store')
     ->name('feedback.store');
 
-
-
-
-
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:gerir-users')->group(function (){
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
-    Route::resource('/cantina', 'CantinaController');
+    Route::resource('/cantina', 'CantinaController', ['except' => ['show']]);
     Route::resource('/produtos', 'ProdutoController');
-    Route::resource('/feedback', 'FeedbackController');
-    Route::resource('/categorias', 'CategoriaController');
+    Route::resource('/feedback', 'FeedbackController', ['except' => ['create', 'store', 'show', 'edit', 'update']]);
+    Route::resource('/categorias', 'CategoriaController', ['except' => ['show']]);
     Route::resource('ementa', 'EmentaController')->parameters(['ementa' => 'ementa']);
-    Route::resource('/pedidos', 'PedidosController');
+    Route::resource('/pedidos', 'PedidosController', ['except' => ['create', 'store', 'show', 'edit', 'update']]);
 
 });
 Route::get('/detalhes/{id}', 'Admin\DetalhesPedidoController@verDetalhes')->name('verdetalhes')->middleware('can:gerir-users');

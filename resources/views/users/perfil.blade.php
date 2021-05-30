@@ -6,7 +6,7 @@
         <div class="container mb-5">
             <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb p-1">
-                    <li class="breadcrumb-item"><a href="{{ route('user.index') }}"></a></li>
+                    <li class="breadcrumb-item"><a style="color: #1b1e21; text-decoration: none" href="{{ route('user.index') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Editar Perfil</li>
                 </ol>
             </nav>

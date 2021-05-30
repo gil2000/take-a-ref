@@ -11,6 +11,10 @@
         </nav>
     </div>
 
+    @if($message = Session::get('success'))
+        {{ $message }}
+    @endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="">

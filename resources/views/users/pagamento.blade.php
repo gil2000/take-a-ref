@@ -2,21 +2,23 @@
 
 @section('content')
 
-        <!-- Breadcrumb -->
-        <div class="container">
-            <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb p-1">
-                    <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Início</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Meu Perfil</li>
-                </ol>
-            </nav>
-        </div>
+    <!-- Breadcrumb -->
+    <div class="container mb-5">
+        <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb p-1">
+                <li class="breadcrumb-item"><a style="color: #1b1e21; text-decoration: none" href="{{ route('user.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a style="color: #1b1e21; text-decoration: none" href="{{ route('mostracarrinho') }}">Carrinho</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pagamento</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- /Breadcrumb -->
 
 
     <div class="container" style="margin-top: 80px">
         <div class="w-100 my-5 text-center">
             <span class="border border-3 p-4">
-                Total do seu pedido: {{ Cart::total() }} €.
+                Total do seu pedido: <strong>{{ Cart::total() }} € </strong>.
                 Para pagar basta enviar por MBWAY o valor da encomenta para 914578956.
             </span>
         </div>

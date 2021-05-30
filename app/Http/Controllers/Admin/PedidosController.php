@@ -14,47 +14,25 @@ class PedidosController extends Controller
     }
 
     //==========================================================================
-    public function index(){
+    public function index(Request $request){
 
-        $pedidos = Pedido::all();
+        if(!is_null($request->search))
+            $pedidos = Pedido::orderBy('updated_at', 'desc')
+                ->where('nome', 'like', '%' . $request->search . '%')
+                ->paginate(10);
+        else
+            $pedidos = Pedido::orderBy('updated_at', 'desc')
+            ->paginate(10);
+
         return view('admin.pedidos.index', compact('pedidos'));
 
     }
 
-
     //==========================================================================
-    public function create()
+    public function destroy(Pedido $pedido)
     {
-        //
-    }
-
-    //==========================================================================
-    public function store(Request $request)
-    {
-        //
-    }
-
-    //==========================================================================
-    public function show($id)
-    {
-        //
-    }
-
-    //==========================================================================
-    public function edit($id)
-    {
-        //
-    }
-
-    //==========================================================================
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    //==========================================================================
-    public function destroy($id)
-    {
-        //
+        $pedido->delete();
+        return redirect()->route('admin.pedidos.index')
+            ->with('success', 'Ementa eliminada com sucesso');
     }
 }

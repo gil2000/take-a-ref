@@ -24,7 +24,6 @@ class ProdutoController extends Controller
             );
     }
 
-
     //=============================================================================================
     public function create(){
         $categorias = Categoria::all();
@@ -42,7 +41,8 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return redirect()->route('admin.produtos.index');
+        return redirect()->route('admin.produtos.index')
+            ->with('success', 'Produto adicionado com sucesso');
     }
 
     //=============================================================================================
@@ -70,13 +70,15 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return redirect()->route('admin.produtos.index');
+        return redirect()->route('admin.produtos.index')
+            ->with('success', 'Produto atualizado com sucesso');
     }
 
     //=============================================================================================
     public function destroy(Produto $produto){
 
         $produto->delete();
-        return redirect()->route('admin.produtos.index');
+        return redirect()->route('admin.produtos.index')
+            ->with('success', 'Produto eliminado com sucesso');
     }
 }

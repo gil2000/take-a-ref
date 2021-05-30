@@ -29,6 +29,8 @@
                         <th scope="col"><i class="fas fa-calendar-day"></i> Hora de Pedido</th>
                         <th scope="col"><i class="far fa-clock"></i> Nome</th>
                         <th class="d-none d-md-table-cell" scope="col"><i class="fas fa-at"></i> NIF</th>
+                        <th class="d-none d-md-table-cell" scope="col"><i class="fas fa-at"></i> Morada</th>
+                        <th class="d-none d-md-table-cell" scope="col"><i class="fas fa-at"></i> CP</th>
                         <th class="text-center" scope="col"><i class="fas fa-edit"></i> Ação</th>
                     </tr>
                     </thead>
@@ -39,10 +41,12 @@
                             <td class="align-middle">{{ $pedido->updated_at->diffForHumans() }}</td>
                             <td class="align-middle">{{ $pedido->nome}} {{ $pedido->apelido}}</td>
                             <td class="align-middle d-none d-md-table-cell">{{ $pedido->nif}}</td>
+                            <td class="align-middle d-none d-md-table-cell">{{ $pedido->morada}}</td>
+                            <td class="align-middle d-none d-md-table-cell">{{ $pedido->codigopostal}}</td>
                             <td class="">
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ route('verdetalhes', $pedido->id) }}"><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-sm btn-success m-1"><i class="fas fa-eye"></i></button></a>
-                                    <form action="" method="">
+                                    <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-sm btn-danger m-1"><i class="fas fa-trash-alt"></i></button>
@@ -53,6 +57,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $pedidos->links() }}
             </div>
         </div>
     </div>

@@ -22,10 +22,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md shadow-sm" style="background: #B5D6D6;" >
+        <nav class="navbar navbar-expand-md py-4" style="background: #B5D6D6;" >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ URL::asset('img/logo.jpg') }}" alt="">
+                    <img class="rounded" src="{{ URL::asset('img/logo.jpg') }}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto"></ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

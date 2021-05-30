@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Pedido;
 use App\DetalhesPedido;
 use App\Diasemana;
@@ -20,22 +21,18 @@ class UserController extends Controller
     //==========================================================================================
     public function index()
     {
-//        $start = now()->dayOfWeek > 5 ? now()->addDays(8 - now()->dayOfWeek) : now();
-//        $end = now()->addDays(5 - now()->dayOfWeek);
-//        $almocos = Ementa::with('produto','produto.categoria')
-//            ->where('tipo', 'Almoço')
-//            ->whereDate('dia', '>=', $start)
-//            ->whereDate('dia', '<=', $end)
-//            ->get();
-//        $segundaF = Ementa::where('diasemana', 1)
-//            ->orderBy('produto_id', 'ASC')
-//            ->get();
+        $categorias = Categoria::all();
+        $segundaF = Ementa::where('diasemana',1)
+            ->get();
+        $tercaF = Ementa::where('diasemana', 2)
+            ->get();
+        $quartaF = Ementa::where('diasemana', 3)
+            ->get();
+        $quintaF = Ementa::where('diasemana', 4)
+            ->get();
+        $sextaF = Ementa::where('diasemana', 5)
+            ->get();
 
-        $segundaF = Ementa::where('diasemana',1)->get();
-        $tercaF = Ementa::where('diasemana', 2)->get();
-        $quartaF = Ementa::where('diasemana', 3)->get();
-        $quintaF = Ementa::where('diasemana', 4)->get();
-        $sextaF = Ementa::where('diasemana', 5)->get();
 
         return view('users.index', compact('segundaF','tercaF','quartaF','quintaF','sextaF'));
     }
@@ -93,9 +90,7 @@ class UserController extends Controller
             \Cart::destroy();
         }
 
-
-
-
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')
+            ->with('success', 'Pedido efetuado com sucesso');
     }
 }
