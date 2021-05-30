@@ -2,13 +2,15 @@
 
 @section('content')
 
-    <div class="container pb-5 mb-2 mb-md-4">
+    <div class="container pb-5 mb-2 mb-md-4 mt-3">
         <div class="row">
             <!-- List of items-->
             <section class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                        <a href="{{ route('apagarcarrinho') }}" class="btn btn btn-outline-danger text-danger"><i class="fas fa-times"></i> Apagar Carrinho</a>
+                        <a style="color: black; background: #6EAFAF" href="{{ route('apagarcarrinho') }}" class="btn btn-sm"><i class="fas fa-backward"></i> Voltar</a>
+                        <a href="{{ route('apagarcarrinho') }}" class="btn btn-sm btn-outline-danger text-dark"><i class="fas fa-times"></i> Apagar Carrinho</a>
                 </div>
+
                 <!-- Item-->
                 @foreach(Cart::content() as $row)
                     <div class="d-sm-flex justify-content-between align-items-center pb-0 border-bottom">
@@ -21,15 +23,16 @@
                             <form method="POST" action="{{ route('removeritem', $row->rowId)}}">
                                 @csrf
                                 <label name="quantidade" class="form-control" type="number" id="quantity4" min="1" value="1">Qt: 1</label>
-                                <button class="btn px-0 text-danger" type="submit"><i class="fas fa-times"></i><span class="fs-sm"> Remover Item</span></button>
+                                <button class="btn btn-sm btn-outline-danger text-dark" type="submit"><i class="fas fa-times"></i><span class="fs-sm"> Remover Item</span></button>
                             </form>
                         </div>
 
                     </div>
                 @endforeach
             </section>
+
             <!-- Sidebar-->
-            <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+            <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5 mt-5">
                 <div class="bg-white rounded-3 shadow-lg p-4">
                     <div class="py-2 px-xl-2">
                         <div class="text-center mb-4 pb-3 border-bottom">
@@ -37,7 +40,7 @@
                             <h3 class="fw-normal">{{Cart::total()}} €</h3>
 
                         </div>
-                        <a class="btn btn-primary btn-shadow d-block w-100 mt-4" href="{{ route('pagar') }}"><i class="ci-card fs-lg me-2"></i>Proceder para pagamento</a>
+                        <a style="color: black; background: #6EAFAF" class="btn btn-shadow d-block w-100 mt-4" href="{{ route('pagar') }}"><i class="ci-card fs-lg me-2"></i>Proceder para pagamento</a>
                     </div>
                 </div>
             </aside>

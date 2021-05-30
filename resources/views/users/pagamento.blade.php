@@ -46,15 +46,7 @@
             </div>
 
             <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Aceito as <a href="">políticas de privacidade</a>
-                    </label>
-                </div>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Efetuar Pedido</button>
+                <button style="color: black; background: #6EAFAF" type="submit" class="btn btn">Efetuar Pedido</button>
             </div>
         </form>
     </div>
