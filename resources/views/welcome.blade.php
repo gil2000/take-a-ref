@@ -84,9 +84,6 @@
                 </div>
             </section>
         </div>
-
-
-
         <section class="">
             <footer class="text-center text-white" style="background: #B5D6D6;">
                 <img class="rounded mt-4" src="img/logo.jpg" alt="">
