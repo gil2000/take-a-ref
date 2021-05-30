@@ -7,31 +7,26 @@
             <!-- List of items-->
             <section class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                    <form method="post" action="{{ route('apagarcarrinho') }}">
-                        <button class="btn px-0 text-danger" type="submit"><i class="fas fa-times"></i><span class="fs-sm"> Apagar Carrinho</span></button>
-                    </form>
+                        <a href="{{ route('apagarcarrinho') }}" class="btn btn btn-outline-danger text-danger"><i class="fas fa-times"></i> Apagar Carrinho</a>
                 </div>
                 <!-- Item-->
                 @foreach(Cart::content() as $row)
-                    <div class="d-sm-flex justify-content-between align-items-center pb-3 border-bottom">
+                    <div class="d-sm-flex justify-content-between align-items-center pb-0 border-bottom">
                         <div class="d-block d-sm-flex align-items-center text-center text-sm-start"><a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="shop-single-v1.html"></a>
-                            <div class="pt-2">
-                                <h3 class="product-title fs-base mb-2">{{ $row->name }}</h3>
+                            <div class="pt-0">
+                                <h4 class="product-title fs-base mb-2">{{ $row->name }}</h4>
                             </div>
                         </div>
-                            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
-                                <form method="POST" action="{{ route('removeritem', $row->id)}}">
-                                    @csrf
-                                    <label class="form-label" for="quantity4">Quantidade</label>
-                                    <input class="form-control" type="number" id="quantity4" min="1" value="1">
-                                    <button onclick="" class="btn px-0 text-danger" type="submit"><i class="fas fa-times"></i><span class="fs-sm"> Remove</span></button>
-                                </form>
-                            </div>
-
+                        <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 my-2 text-center text-sm-start" style="max-width: 9rem;">
+                            <form method="POST" action="{{ route('removeritem', $row->rowId)}}">
+                                @csrf
+                                <label name="quantidade" class="form-control" type="number" id="quantity4" min="1" value="1">Qt: 1</label>
+                                <button class="btn px-0 text-danger" type="submit"><i class="fas fa-times"></i><span class="fs-sm"> Remover Item</span></button>
+                            </form>
+                        </div>
 
                     </div>
                 @endforeach
-                <button class="btn btn-primary d-block w-100 mt-4" type="button"><i class="fas fa-sync-alt"></i> Atualizar Carrinho</button>
             </section>
             <!-- Sidebar-->
             <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">

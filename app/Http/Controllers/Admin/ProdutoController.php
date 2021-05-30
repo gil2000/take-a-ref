@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Cantina;
 use App\Categoria;
 use App\Http\Controllers\Controller;
 use App\Produto;
@@ -10,29 +9,31 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
     //=============================================================================================
-    public function index()
-    {
+    public function index(){
+
         $produtos = Produto::all();
         $categorias = Categoria::all();
-        return view('admin.produtos.index')->with('produtos', $produtos, 'categorias', $categorias);
+        return view('admin.produtos.index')
+            ->with('produtos', $produtos,
+                   'categorias', $categorias
+            );
     }
 
+
     //=============================================================================================
-    public function create()
-    {
+    public function create(){
         $categorias = Categoria::all();
-        return view('admin.produtos.create')->with('categorias', $categorias);
+        return view('admin.produtos.create')
+            ->with('categorias', $categorias);
     }
 
     //=============================================================================================
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $produto = new produto;
 
         $produto ->categoria_id = $request->text_categoria;
@@ -45,24 +46,23 @@ class ProdutoController extends Controller
     }
 
     //=============================================================================================
-    public function show(Produto $produto)
-    {
+    public function show(Produto $produto){
         //
     }
 
     //=============================================================================================
-    public function edit(Produto $produto)
-    {
+    public function edit(Produto $produto){
+
         $categorias = Categoria::all();
         $produto::find($produto);
-        return view('admin.produtos.edit', compact('categorias'))->with([
-            'produto' => $produto,
-        ]);
+        return view('admin.produtos.edit', compact('categorias'))
+            ->with([
+                'produto' => $produto,
+            ]);
     }
 
     //=============================================================================================
-    public function update(Request $request, Produto $produto)
-    {
+    public function update(Request $request, Produto $produto){
 
         $produto ->categoria_id = $request->text_categoria;
         $produto ->nome = $request->text_nome;
@@ -74,8 +74,8 @@ class ProdutoController extends Controller
     }
 
     //=============================================================================================
-    public function destroy(Produto $produto)
-    {
+    public function destroy(Produto $produto){
+
         $produto->delete();
         return redirect()->route('admin.produtos.index');
     }

@@ -1,22 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-        </ol>
-    </nav>
-    <!-- /Breadcrumb -->
 
+    <div class="container mb-5 mx-auto">
+        <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb p-1">
+                <li class="breadcrumb-item"><a style="color: #1b1e21; text-decoration: none" href="{{ route('admin.ementa.index') }}">Ementa</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar Ementa</li>
+            </ol>
+        </nav>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Produto</div>
-
+                    <div class="card-header">Editar Ementa</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.ementa.update', $ementa->id) }}" >
                             @csrf

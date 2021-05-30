@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pedido;
+use App\DetalhesPedido;
 use App\Diasemana;
 use App\Ementa;
 use App\User;
@@ -10,11 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    //==========================================================================================
     public function __construct()
     {
         $this->middleware('auth');
     }
-
+    //==========================================================================================
     public function index()
     {
 //        $start = now()->dayOfWeek > 5 ? now()->addDays(8 - now()->dayOfWeek) : now();
@@ -37,14 +40,17 @@ class UserController extends Controller
         return view('users.index', compact('segundaF','tercaF','quartaF','quintaF','sextaF'));
     }
 
+    //==========================================================================================
     public function verPerfil(){
         return view('users.perfil');
     }
 
+    //==========================================================================================
     public function edit(User $user){
         return view('users.edit');
     }
 
+    //==========================================================================================
     public function update(Request $request, User $user){
         Auth::user()->update([
             'name' => $request->text_nome,
@@ -56,8 +62,40 @@ class UserController extends Controller
         return redirect()->route('verperfil');
     }
 
+    //==========================================================================================
     public function show($tipo , $dia){
         $ementa = Ementa::where('tipo',$tipo)->where('dia',$dia);
         return view( 'users.index',compact('ementa'));
+    }
+
+    //==========================================================================================
+    public function fazerPdd(Request $request){
+
+
+        $pedido = new pedido;
+
+        $pedido->nome = $request->primeironome;
+        $pedido->apelido = $request->apelido;
+        $pedido->morada = $request->morada;
+        $pedido->codigopostal = $request->codigopostal;
+        $pedido->nif = $request->nif;
+
+        $pedido->save();
+        foreach (\Cart::content() as $product){
+
+            $detalhespedido = new detalhespedido;
+
+            $detalhespedido->pedido_id = $pedido->id;
+            $detalhespedido->produto_id = $product->id;
+
+            $detalhespedido->save();
+
+            \Cart::destroy();
+        }
+
+
+
+
+        return redirect()->route('user.index');
     }
 }

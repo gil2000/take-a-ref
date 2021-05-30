@@ -46,21 +46,10 @@ class RegisterController extends Controller
     //=======================================================================================================
     protected function create(array $data)
     {
-        if (isset($_POST['estudante']))
-        {
-            $estudante = '1';
-        }
-        else
-        {
-            $estudante = '0';
-        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'estudante' => $estudante,
-            'nif' => $data['nif'],
-            'telemovel' => $data['telemovel'],
-            'instituicao' => $data['instituicao'],
             'password' => Hash::make($data['password']),
         ]);
     }

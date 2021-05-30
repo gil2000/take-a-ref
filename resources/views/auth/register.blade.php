@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card border border-3 shadow">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -39,61 +39,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="instituicao" class="col-md-4 col-form-label text-md-right">Instituição</label>
-
-                            <div class="col-md-6">
-                                <input id="instituicao" type="instituicao" class="form-control @error('instituicao') is-invalid @enderror" name="instituicao" value="{{ old('instituicao') }}" autocomplete="instituicao">
-
-                                @error('instituicao')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="telemovel" class="col-md-4 col-form-label text-md-right">Telemóvel*</label>
-
-                            <div class="col-md-6">
-                                <input id="instituicao" type="text" class="form-control @error('telemovel') is-invalid @enderror" name="telemovel" value="{{ old('telemovel') }}" required autocomplete="telemovel">
-
-                                @error('telemovel')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="estudante" class="col-md-4 col-form-label text-md-right">Estudante</label>
-
-                            <div class="col-md-6">
-                                <input id="estudante" type="checkbox" class="form-control @error('checkbox') is-invalid @enderror" name="estudante" value="{{ old('estudante')}}" autocomplete="estudante">
-
-                                @error('estudante')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="nif" class="col-md-4 col-form-label text-md-right">Nif</label>
-
-                            <div class="col-md-6">
-                                <input id="nif" type="text" class="form-control @error('nif') is-invalid @enderror" name="nif" autocomplete="nif">
-
-                                @error('nif')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password*</label>
@@ -119,7 +64,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button style="background: #6EAFAF" type="submit" class="btn">
                                     {{ __('Register') }}
                                 </button>
                             </div>

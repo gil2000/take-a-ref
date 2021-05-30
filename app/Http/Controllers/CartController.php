@@ -12,16 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function __construct()
-    {
+    //========================================================================================================
+    public function __construct(){
         $this->middleware('auth');
     }
 
+    //========================================================================================================
     public function storeCarrinho(Request $request){
 
-
         $array = $request->except('_token');
-
         foreach ($array as $key => $value)
         {
             $product = Produto::findOrFail($value);
@@ -32,45 +31,36 @@ class CartController extends Controller
         return redirect()->route('mostracarrinho');
     }
 
-    public function index()
-    {
+    //========================================================================================================
+    public function index(){
         return view('users.carrinho');
     }
-    public function removeItem($id){
-        $cart = \Cart::content()->where('rowId', $id);
-        if($cart->isNotEmpty()){
-            \Cart::remove(id);
-        }
 
-
-
+    //========================================================================================================
+    public function removeItem($rowId){
+        \Cart::remove($rowId);
+        return back();
     }
 
+    //========================================================================================================
     public function apagarCarrinho(){
-        Cart::truncate();
 
+        \Cart::destroy();
+        return redirect()->route('user.index');
     }
 
+    //========================================================================================================
     public function pagar(){
         return view('users.pagamento');
-
     }
 
-    public function update(){
+    //========================================================================================================
+    public function update($rowId){
 
+        \Cart::get($rowId);
+        \Cart::update($rowId, 6);
 
-        $array = $request->except('_token');
-
-        foreach ($array as $key => $value)
-        {
-            $product = Produto::findOrFail($value);
-
-            \Cart::add($product->id, $product->nome, 1, $product->preco, 0, ['tipo' => $key])->associate(Produto::class);
-        }
-
-        return view('users.carrinho');
-
-        dd(\Cart::content(), \Cart::subtotal());
+        return redirect()->route('mostracarrinho');
 
     }
 }

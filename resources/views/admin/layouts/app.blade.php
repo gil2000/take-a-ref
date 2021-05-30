@@ -104,6 +104,17 @@
             </li>
 
             <!-- Divider -->
+            <hr class="sidebar-divider mb-0">
+            <!-- Divider -->
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{ request()->routeIs('admin.pedidos.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.pedidos.index') }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span> Pedidos</span></a>
+            </li>
+
+            <!-- Divider -->
             <hr class="sidebar-divider mb-5">
 
             <!-- Sidebar Toggler (Sidebar) -->

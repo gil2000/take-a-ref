@@ -19,5 +19,7 @@ class Produto extends Model
         return $this->hasMany(Ementa::class);
     }
 
-
+    public function detalhes(){
+        return $this->hasMany(DetalhesPedido::class);
+    }
 }

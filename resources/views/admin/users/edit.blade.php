@@ -1,9 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('content')
+    <!-- Breadcrumb -->
+    <div class="container mb-5">
+        <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb p-1">
+                <li class="breadcrumb-item"><a style="color: #1b1e21; text-decoration: none" href="{{ route('admin.users.index') }}">Users</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Roles</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- /Breadcrumb -->
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Editar user {{ $user -> name }}</div>
                     <div class="card-body">

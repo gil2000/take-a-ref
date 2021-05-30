@@ -19,11 +19,11 @@
         <h1 class="text-center">Ementas da semana</h1>
 
         <div class="row my-5 justify-content-center">
-            <a style="width: 200px" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#segunda">Segunda-Feira</a>
-            <a style="width: 200px" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#terca">Terça-Feira</a>
-            <a style="width: 200px" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#quarta">Quarta-Feira</a>
-            <a style="width: 200px" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#quinta">Quinta-Feira</a>
-            <a style="width: 200px" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#sexta">Sexta-Feira</a>
+            <a style="width: 200px; background: #6EAFAF" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#segunda">Segunda-Feira</a>
+            <a style="width: 200px; background: #6EAFAF" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#terca">Terça-Feira</a>
+            <a style="width: 200px; background: #6EAFAF" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#quarta">Quarta-Feira</a>
+            <a style="width: 200px; background: #6EAFAF" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#quinta">Quinta-Feira</a>
+            <a style="width: 200px; background: #6EAFAF" class="col-md-auto btn btn-sm btn-outline-dark align-self-center m-1" href="#sexta">Sexta-Feira</a>
 
         </div>
 
@@ -32,10 +32,9 @@
         <h2 id="segunda" class="text-center mb-4">Segunda-Feira</h2>
         <div class="row mb-5">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Almoço <i class="far fa-sun"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($segundaF as $segunda)
                                     @if($segunda->tipo == 1)
@@ -100,24 +99,20 @@
                                             @endforeach
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                                <button type="submit" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
+            <div class="col-sm-6 mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Jantar <i class="far fa-moon"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Jantar <i class="far fa-moon"></i></h5>
-                        <hr >
                         <div class="row">
                             @foreach($segundaF as $segunda)
                                 @if($segunda->tipo == 2)
@@ -141,7 +136,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form method="post" action="{{ route('storecarrinho') }} ">
+                                            @csrf
                                             <div class="alert alert-info text-center" role="alert">
                                                 Escolha os itens que vai desejar
                                             </div>
@@ -149,21 +145,28 @@
                                                 @if($segunda->tipo == 2)
                                                     @if($segunda->nomePrato() == 'Prato Carne: ' || $segunda->nomePrato() == 'Prato Peixe: ' || $segunda->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $segunda->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($segunda->nomePrato() == 'Fruta: ' || $segunda->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $segunda->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($segunda->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($segunda->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $segunda->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$segunda->nomePrato()}}</b> {{ $segunda->produto->nome }}
                                                             </label>
@@ -171,12 +174,11 @@
                                                     @endif
                                                 @endif
                                             @endforeach
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                <button type="submit" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -189,10 +191,9 @@
         <h2 id="terca" class="text-center mb-4">Terça-Feira </h2>
         <div class="row mb-5">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Almoço <i class="far fa-sun"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($tercaF as $terca)
                                 @if($terca->tipo == 1)
@@ -224,21 +225,28 @@
                                                 @if($terca->tipo == 1)
                                                     @if($terca->nomePrato() == 'Prato Carne: ' || $terca->nomePrato() == 'Prato Peixe: ' || $terca->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $terca->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($terca->nomePrato() == 'Fruta: ' || $terca->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $terca->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($terca->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$segunda->nomePrato()}}</b> {{ $terca->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($terca->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
@@ -250,7 +258,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -260,10 +268,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Jantar <i class="far fa-moon"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Jantar <i class="far fa-moon"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($tercaF as $terca)
                                 @if($terca->tipo == 2)
@@ -295,21 +302,28 @@
                                                 @if($terca->tipo == 2)
                                                     @if($terca->nomePrato() == 'Prato Carne: ' || $terca->nomePrato() == 'Prato Peixe: ' || $terca->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $terca->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($terca->nomePrato() == 'Fruta: ' || $terca->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $terca->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($terca->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$segunda->nomePrato()}}</b> {{ $terca->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($terca->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $terca->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$terca->nomePrato()}}</b> {{ $terca->produto->nome }}
                                                             </label>
@@ -321,7 +335,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -335,10 +349,9 @@
         <h2 id="quarta" class="text-center mb-4">Quarta-Feira</h2>
         <div class="row mb-5">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Almoço <i class="far fa-sun"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($quartaF as $quarta)
                                 @if($quarta->tipo == 1)
@@ -370,21 +383,28 @@
                                                 @if($quarta->tipo == 1)
                                                     @if($quarta->nomePrato() == 'Prato Carne: ' || $quarta->nomePrato() == 'Prato Peixe: ' || $quarta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $quarta->nomePrato() == 'Doce: ')
+                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $segunda->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $quarta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($quarta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($quarta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
@@ -396,7 +416,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -406,10 +426,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Jantar <i class="far fa-moon"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Jantar <i class="far fa-moon"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($quartaF as $quarta)
                                 @if($quarta->tipo == 2)
@@ -441,21 +460,28 @@
                                                 @if($quarta->tipo == 2)
                                                     @if($quarta->nomePrato() == 'Prato Carne: ' || $quarta->nomePrato() == 'Prato Peixe: ' || $quarta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $terca->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $segunda->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $quarta->nomePrato() == 'Doce: ')
+                                                    @elseif($quarta->nomePrato() == 'Fruta: ' || $segunda->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $quarta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $quarta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($quarta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($quarta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quarta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quarta->nomePrato()}}</b> {{ $quarta->produto->nome }}
                                                             </label>
@@ -467,7 +493,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -481,10 +507,9 @@
         <h2 id="quinta" class="text-center mb-4">Quinta-Feira</h2>
         <div class="row mb-5">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Almoço <i class="far fa-sun"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($quintaF as $quinta)
                                 @if($quinta->tipo == 1)
@@ -516,21 +541,28 @@
                                                 @if($quinta->tipo == 1)
                                                     @if($quinta->nomePrato() == 'Prato Carne: ' || $quinta->nomePrato() == 'Prato Peixe: ' || $quinta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($quinta->nomePrato() == 'Fruta: ' || $quinta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($quinta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($quinta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
@@ -542,7 +574,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -552,10 +584,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Jantar <i class="far fa-moon"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Jantar <i class="far fa-moon"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($quintaF as $quinta)
                                 @if($quinta->tipo == 2)
@@ -586,21 +617,28 @@
                                                 @if($quinta->tipo == 2)
                                                     @if($quinta->nomePrato() == 'Prato Carne: ' || $quinta->nomePrato() == 'Prato Peixe: ' || $quinta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($quinta->nomePrato() == 'Fruta: ' || $quinta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($quinta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($quinta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $quinta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$quinta->nomePrato()}}</b> {{ $quinta->produto->nome }}
                                                             </label>
@@ -612,7 +650,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -626,10 +664,9 @@
         <h2 id="sexta" class="text-center mb-4">Sexta-Feira</h2>
         <div class="row mb-5">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Almoço <i class="far fa-sun"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Almoço <i class="far fa-sun"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($sextaF as $sexta)
                                 @if($sexta->tipo == 1)
@@ -660,21 +697,28 @@
                                                 @if($sexta->tipo == 1)
                                                     @if($sexta->nomePrato() == 'Prato Carne: ' || $sexta->nomePrato() == 'Prato Peixe: ' || $sexta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($sexta->nomePrato() == 'Fruta: ' || $sexta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $sexta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($sexta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($sexta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
@@ -686,7 +730,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -695,10 +739,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow-sm">
+                    <div class="card-header h5 text-center">Jantar <i class="far fa-moon"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Jantar <i class="far fa-moon"></i></h5>
-                        <hr>
                         <div class="row">
                             @foreach($sextaF as $sexta)
                                 @if($sexta->tipo == 2)
@@ -729,21 +772,28 @@
                                                 @if($sexta->tipo == 2)
                                                     @if($sexta->nomePrato() == 'Prato Carne: ' || $sexta->nomePrato() == 'Prato Peixe: ' || $sexta->nomePrato() == 'Prato Vegetariano: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input check" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="radio" value="{{ $quinta->produto->id }}" name="pratoprincipal" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
                                                     @elseif($sexta->nomePrato() == 'Fruta: ' || $sexta->nomePrato() == 'Doce: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input checka" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck2">
-                                                            <label class="form-check-label" for="defaultCheck2">
+                                                            <input class="form-check-input" type="radio" value="{{ $sexta->produto->id }}" name="sobremesa" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
                                                         </div>
-                                                    @else
+                                                    @elseif($sexta->nomePrato() == 'Pão: ')
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" id="defaultCheck1">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="pao" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
+                                                            </label>
+                                                        </div>
+                                                    @elseif($sexta->nomePrato() == 'Sopa: ')
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{ $sexta->produto->id }}" name="sopa" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 <b>{{$sexta->nomePrato()}}</b> {{ $sexta->produto->nome }}
                                                             </label>
@@ -755,7 +805,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary">Continuar <i class="fas fa-shopping-cart"></i></button>
+                                        <button type="button" class="btn" style="background: #6EAFAF">Continuar <i class="fas fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </div>

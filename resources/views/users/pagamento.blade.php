@@ -13,55 +13,48 @@
         </div>
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 80px">
         <div class="w-100 my-5 text-center">
             <span class="border border-3 p-4">
                 Total do seu pedido: {{ Cart::total() }} €.
-                Para pagar basta ligar para o 760 100 200 (custo de 60c + iva)
+                Para pagar basta enviar por MBWAY o valor da encomenta para 914578956.
             </span>
         </div>
-        <form class="row g-3">
+
+        <form method="POST" action="{{ route('fazerpdd') }}" class="row g-3 bg-light" style="margin-top: 100px">
+            @csrf
+            <div class="h6 my-4">Informação para faturação</div>
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
+                <label for="inputNome" class="form-label">Primeiro Nome</label>
+                <input name="primeironome" type="name" class="form-control" id="inputEmail4">
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <label for="inputApelido" class="form-label">Apelido</label>
+                <input name="apelido" type="name" class="form-control" id="inputApelido">
             </div>
             <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <label for="inputAddress" class="form-label">Morada</label>
+                <input name="morada" type="text" class="form-control" id="inputAddress">
             </div>
             <div class="col-md-4">
-                <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
+                <label for="inputZip" class="form-label">Código Postal</label>
+                <input name="codigopostal" type="text" class="form-control" id="inputZip">
             </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+            <div class="col-md-8">
+                <label for="inputCity" class="form-label">Numero de Identificação Fiscal</label>
+                <input name="nif" type="text" class="form-control" id="inputCity">
             </div>
+
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gridCheck">
                     <label class="form-check-label" for="gridCheck">
-                        Check me out
+                        Aceito as <a href="">políticas de privacidade</a>
                     </label>
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Efetuar Pedido</button>
             </div>
         </form>
     </div>
